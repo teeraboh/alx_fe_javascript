@@ -11,10 +11,23 @@
       <option value="all">All Categories</option>
       <!-- Categories populated dynamically -->
     </select>
+
+    <div id="syncStatus">Synced with server</div>
+    <button id="manualSync">Sync Now</button>
+
     <!-- Existing elements -->
     <button id="exportQuotes">Export Quotes</button>
     <input type="file" id="importFile" accept=".json" />
     <div id="quoteDisplay"></div>
+
+    <!-- Conflict Resolution Modal -->
+    <div id="conflictModal" style="display: none">
+      <h3>Conflict Detected!</h3>
+      <div id="conflictDetails"></div>
+      <button onclick="resolveConflict('server')">Use Server Version</button>
+      <button onclick="resolveConflict('local')">Keep Local Changes</button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
