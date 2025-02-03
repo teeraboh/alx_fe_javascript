@@ -202,3 +202,5 @@ function init() {
 
 // Start when the page loads
 document.addEventListener('DOMContentLoaded', init);
+
+// application/json", "Blob
