@@ -327,3 +327,5 @@ document.addEventListener('DOMContentLoaded', init);
 // https://jsonplaceholder.typicode.com/posts", ".json
 
 // method", "POST", "headers", "Content-Type
+
+// Quotes synced with server
