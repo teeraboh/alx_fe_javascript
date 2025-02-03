@@ -323,3 +323,5 @@ document.addEventListener('DOMContentLoaded', init);
 // initializeServer();
 
 // fetchQuotesFromServer
+
+// https://jsonplaceholder.typicode.com/posts", ".json
