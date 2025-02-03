@@ -328,4 +328,4 @@ document.addEventListener('DOMContentLoaded', init);
 
 // method", "POST", "headers", "Content-Type
 
-// Quotes synced with server!
+// "Quotes synced with server!"
