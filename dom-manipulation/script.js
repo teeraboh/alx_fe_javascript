@@ -206,3 +206,118 @@ document.addEventListener('DOMContentLoaded', init);
 // application/json", "Blob
 
 // FileReader", "onload", "readAsText
+
+// Server simulation (using localStorage as mock "server")
+// const SERVER_KEY = 'serverQuotes';
+// let lastSyncTime = 0;
+
+// // Initialize server with default data if empty
+// function initializeServer() {
+//   if (!localStorage.getItem(SERVER_KEY)) {
+//     localStorage.setItem(SERVER_KEY, JSON.stringify([
+//       {
+//         id: 1,
+//         text: "Default server quote",
+//         category: "System",
+//         version: 1,
+//         timestamp: Date.now()
+//       }
+//     ]));
+//   }
+// }
+
+// // Fetch server quotes
+// async function fetchServerQuotes() {
+//   await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+//   return JSON.parse(localStorage.getItem(SERVER_KEY)) || [];
+// }
+
+// // Push local quotes to server
+// async function pushToServer(quotesToPush) {
+//   await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+//   localStorage.setItem(SERVER_KEY, JSON.stringify(quotesToPush));
+// }
+
+// // Sync logic with conflict resolution
+// async function syncQuotes() {
+//   try {
+//     const serverQuotes = await fetchServerQuotes();
+//     const localQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
+
+//     // Detect conflicts
+//     const conflicts = [];
+//     const mergedQuotes = [...localQuotes];
+
+//     serverQuotes.forEach(serverQuote => {
+//       const localMatch = mergedQuotes.find(q => q.id === serverQuote.id);
+
+//       if (localMatch) {
+//         if (serverQuote.version > (localMatch.version || 0)) {
+//           // Server version is newer
+//           Object.assign(localMatch, serverQuote);
+//           conflicts.push(serverQuote);
+//         }
+//       } else {
+//         mergedQuotes.push(serverQuote); // Add new server quotes
+//       }
+//     });
+
+//     // Push local changes to server
+//     const localChanges = mergedQuotes.filter(q =>
+//       !serverQuotes.some(sq => sq.id === q.id) ||
+//       q.version > (serverQuotes.find(sq => sq.id === q.id)?.version || 0)
+//     );
+
+//     if (localChanges.length > 0) {
+//       await pushToServer(localChanges);
+//     }
+
+//     // Update local storage
+//     localStorage.setItem('quotes', JSON.stringify(mergedQuotes));
+//     quotes = mergedQuotes;
+
+//     // Handle UI updates
+//     updateSyncStatus(conflicts);
+//     if (conflicts.length > 0) showConflictModal(conflicts);
+
+//     // Refresh UI
+//     populateCategories();
+//     filterQuotes();
+
+//   } catch (error) {
+//     console.error('Sync failed:', error);
+//     document.getElementById('syncStatus').textContent = 'Sync failed!';
+//   }
+// }
+
+// // UI Updates
+// function updateSyncStatus(conflicts) {
+//   const status = document.getElementById('syncStatus');
+//   status.textContent = conflicts.length > 0
+//     ? `${conflicts.length} conflicts resolved`
+//     : `Synced at ${new Date().toLocaleTimeString()}`;
+// }
+
+// function showConflictModal(conflicts) {
+//   const modal = document.getElementById('conflictModal');
+//   const details = document.getElementById('conflictDetails');
+//   details.innerHTML = conflicts.map(quote =>
+//     `<p>Conflict in quote #${quote.id}: "${quote.text}"</p>`
+//   ).join('');
+//   modal.style.display = 'block';
+// }
+
+// function resolveConflict(strategy) {
+//   const modal = document.getElementById('conflictModal');
+//   modal.style.display = 'none';
+//   if (strategy === 'local') {
+//     // Revert to local version logic
+//   }
+// }
+
+// // Periodic sync every 30 seconds
+// setInterval(syncQuotes, 30000);
+// document.getElementById('manualSync').addEventListener('click', syncQuotes);
+
+// // Initialize server on app start
+// initializeServer();
