@@ -321,3 +321,5 @@ document.addEventListener('DOMContentLoaded', init);
 
 // // Initialize server on app start
 // initializeServer();
+
+// fetchQuotesFromServer
