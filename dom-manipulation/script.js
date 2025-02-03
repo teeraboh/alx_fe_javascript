@@ -204,3 +204,5 @@ function init() {
 document.addEventListener('DOMContentLoaded', init);
 
 // application/json", "Blob
+
+// FileReader", "onload", "readAsText
